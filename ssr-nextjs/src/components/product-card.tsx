@@ -13,6 +13,7 @@ interface ProductCardProps {
   onAddToCart: (product: Product) => void;
 }
 
+// Client Component - potrzebuje interaktywności (wishlist, add to cart)
 export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);

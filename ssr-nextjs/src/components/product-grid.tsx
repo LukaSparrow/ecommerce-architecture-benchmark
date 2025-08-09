@@ -10,6 +10,7 @@ interface ProductGridProps {
   onAddToCart: (product: Product) => void;
 }
 
+// Client Component - potrzebuje interaktywności (paginacja)
 export function ProductGrid({ products, onAddToCart }: ProductGridProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;

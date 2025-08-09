@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from "react"
 import type { Product, FilterOptions } from "@/types/product"
-import { mockProducts } from "@/data/mock-products"
 
-export function useProducts(searchQuery: string, filters: FilterOptions) {
-  const [products, setProducts] = useState<Product[]>([])
-  const [loading, setLoading] = useState(true)
+export function useProducts(searchQuery: string, filters: FilterOptions, initialProducts: Product[]) {
+  const [products, setProducts] = useState<Product[]>(initialProducts)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -16,9 +15,9 @@ export function useProducts(searchQuery: string, filters: FilterOptions) {
 
       try {
         // Simulate API delay for benchmarking
-        await new Promise((resolve) => setTimeout(resolve, 500))
+        await new Promise((resolve) => setTimeout(resolve, 300))
 
-        let filteredProducts = [...mockProducts]
+        let filteredProducts = [...initialProducts]
 
         // Apply search filter
         if (searchQuery) {
@@ -30,7 +29,7 @@ export function useProducts(searchQuery: string, filters: FilterOptions) {
         }
 
         // Apply category filter
-        if (filters.category) {
+        if (filters.category && filters.category !== "all") {
           filteredProducts = filteredProducts.filter((product) => product.category === filters.category)
         }
 
@@ -69,7 +68,7 @@ export function useProducts(searchQuery: string, filters: FilterOptions) {
     }
 
     fetchProducts()
-  }, [searchQuery, filters])
+  }, [searchQuery, filters, initialProducts])
 
   return { products, loading, error }
 }

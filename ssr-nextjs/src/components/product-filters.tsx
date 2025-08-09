@@ -18,6 +18,7 @@ interface ProductFiltersProps {
   onFiltersChange: (filters: FilterOptions) => void;
 }
 
+// Client Component - potrzebuje interaktywności (filtry)
 export function ProductFilters({
   filters,
   onFiltersChange,

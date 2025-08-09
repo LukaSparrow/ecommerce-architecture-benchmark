@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,12 +12,10 @@ import {
   Award,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
-interface LandingPageProps {
-  onShopNow: () => void;
-}
-
-export function LandingPage({ onShopNow }: LandingPageProps) {
+// Server Component - statyczna treść renderowana na serwerze
+export function LandingPage() {
   const features = [
     {
       icon: Truck,
@@ -99,9 +95,11 @@ export function LandingPage({ onShopNow }: LandingPageProps) {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" onClick={onShopNow} className="text-lg px-8">
-                  Shop Now
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                <Button size="lg" asChild className="text-lg px-8">
+                  <Link href="/products">
+                    Shop Now
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
                 </Button>
                 <Button
                   variant="outline"
@@ -194,19 +192,21 @@ export function LandingPage({ onShopNow }: LandingPageProps) {
                 key={index}
                 className="group cursor-pointer hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
-                <div className="relative aspect-square overflow-hidden">
-                  <Image
-                    src={category.image || "/placeholder.svg"}
-                    alt={category.name}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-xl font-bold">{category.name}</h3>
-                    <p className="text-sm opacity-90">{category.count}</p>
+                <Link href="/products" className="block">
+                  <div className="relative aspect-square overflow-hidden">
+                    <Image
+                      src={category.image || "/placeholder.svg"}
+                      alt={category.name}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-xl font-bold">{category.name}</h3>
+                      <p className="text-sm opacity-90">{category.count}</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </Card>
             ))}
           </div>
@@ -244,9 +244,11 @@ export function LandingPage({ onShopNow }: LandingPageProps) {
               products at unbeatable prices.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" onClick={onShopNow} className="text-lg px-8">
-                Browse Products
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <Button size="lg" asChild className="text-lg px-8">
+                <Link href="/products">
+                  Browse Products
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
               </Button>
               <Button
                 variant="outline"
@@ -278,24 +280,24 @@ export function LandingPage({ onShopNow }: LandingPageProps) {
               <h4 className="text-lg font-semibold">Quick Links</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <button className="hover:text-white transition-colors">
+                  <Link href="/" className="hover:text-white transition-colors">
                     About Us
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button className="hover:text-white transition-colors">
+                  <Link href="/" className="hover:text-white transition-colors">
                     Contact
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button className="hover:text-white transition-colors">
+                  <Link href="/" className="hover:text-white transition-colors">
                     FAQ
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button className="hover:text-white transition-colors">
+                  <Link href="/" className="hover:text-white transition-colors">
                     Shipping
-                  </button>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -304,24 +306,36 @@ export function LandingPage({ onShopNow }: LandingPageProps) {
               <h4 className="text-lg font-semibold">Categories</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <button className="hover:text-white transition-colors">
+                  <Link
+                    href="/products"
+                    className="hover:text-white transition-colors"
+                  >
                     Electronics
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button className="hover:text-white transition-colors">
+                  <Link
+                    href="/products"
+                    className="hover:text-white transition-colors"
+                  >
                     Fashion
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button className="hover:text-white transition-colors">
+                  <Link
+                    href="/products"
+                    className="hover:text-white transition-colors"
+                  >
                     Home & Garden
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button className="hover:text-white transition-colors">
+                  <Link
+                    href="/products"
+                    className="hover:text-white transition-colors"
+                  >
                     Sports
-                  </button>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -330,24 +344,24 @@ export function LandingPage({ onShopNow }: LandingPageProps) {
               <h4 className="text-lg font-semibold">Support</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <button className="hover:text-white transition-colors">
+                  <Link href="/" className="hover:text-white transition-colors">
                     Help Center
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button className="hover:text-white transition-colors">
+                  <Link href="/" className="hover:text-white transition-colors">
                     Returns
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button className="hover:text-white transition-colors">
+                  <Link href="/" className="hover:text-white transition-colors">
                     Privacy Policy
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button className="hover:text-white transition-colors">
+                  <Link href="/" className="hover:text-white transition-colors">
                     Terms of Service
-                  </button>
+                  </Link>
                 </li>
               </ul>
             </div>

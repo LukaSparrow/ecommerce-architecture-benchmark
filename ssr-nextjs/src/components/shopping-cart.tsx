@@ -13,6 +13,7 @@ interface ShoppingCartProps {
   onRemoveItem: (id: string) => void;
 }
 
+// Client Component - potrzebuje interaktywności (zarządzanie koszykiem)
 export function ShoppingCart({
   cart,
   onUpdateQuantity,

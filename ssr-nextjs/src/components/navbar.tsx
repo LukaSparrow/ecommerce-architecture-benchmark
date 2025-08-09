@@ -5,26 +5,24 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { Menu, ShoppingCart, Heart, User, Search } from "lucide-react";
+import { useCart } from "@/components/cart-provider";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-interface NavbarProps {
-  currentPage: "landing" | "products";
-  onPageChange: (page: "landing" | "products") => void;
-  cartItemsCount?: number;
-}
-
-export function Navbar({
-  currentPage,
-  onPageChange,
-  cartItemsCount = 0,
-}: NavbarProps) {
+// Client Component - potrzebuje interaktywności (menu, koszyk)
+export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { cart } = useCart();
+  const pathname = usePathname();
+
+  const cartItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const navItems = [
-    { label: "Home", page: "landing" as const },
-    { label: "Products", page: "products" as const },
-    { label: "Categories", page: "products" as const },
-    { label: "About", page: "landing" as const },
-    { label: "Contact", page: "landing" as const },
+    { label: "Home", href: "/" },
+    { label: "Products", href: "/products" },
+    { label: "Categories", href: "/products" },
+    { label: "About", href: "/" },
+    { label: "Contact", href: "/" },
   ];
 
   return (
@@ -33,28 +31,28 @@ export function Navbar({
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <button
-              onClick={() => onPageChange("landing")}
+            <Link
+              href="/"
               className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-blue-700 hover:to-purple-700 transition-all"
             >
               ShopBench
-            </button>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <button
+              <Link
                 key={item.label}
-                onClick={() => onPageChange(item.page)}
+                href={item.href}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  currentPage === item.page
+                  pathname === item.href
                     ? "text-primary"
                     : "text-muted-foreground"
                 }`}
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
           </div>
 
@@ -90,20 +88,18 @@ export function Navbar({
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <div className="flex flex-col space-y-4 mt-8">
                   {navItems.map((item) => (
-                    <button
+                    <Link
                       key={item.label}
-                      onClick={() => {
-                        onPageChange(item.page);
-                        setIsMobileMenuOpen(false);
-                      }}
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
                       className={`text-left text-lg font-medium transition-colors hover:text-primary ${
-                        currentPage === item.page
+                        pathname === item.href
                           ? "text-primary"
                           : "text-muted-foreground"
                       }`}
                     >
                       {item.label}
-                    </button>
+                    </Link>
                   ))}
 
                   <div className="pt-4 border-t">

@@ -10,9 +10,14 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ShoppingCartIcon, FilterIcon } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
 import { useProducts } from "@/hooks/use-products";
-import type { FilterOptions } from "@/types/product";
+import type { FilterOptions, Product } from "@/types/product";
 
-export function ProductsPage() {
+interface ProductsPageProps {
+  initialProducts: Product[];
+}
+
+// Client Component - potrzebuje interaktywności (filtry, koszyk, wyszukiwanie)
+export function ProductsPage({ initialProducts }: ProductsPageProps) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -24,7 +29,11 @@ export function ProductsPage() {
   });
 
   const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
-  const { products, loading, error } = useProducts(searchQuery, filters);
+  const { products, loading, error } = useProducts(
+    searchQuery,
+    filters,
+    initialProducts
+  );
 
   const cartItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 

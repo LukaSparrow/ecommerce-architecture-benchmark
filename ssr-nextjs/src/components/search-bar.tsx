@@ -8,6 +8,7 @@ interface SearchBarProps {
   onSearch: (query: string) => void;
 }
 
+// Client Component - potrzebuje interaktywności (wyszukiwanie)
 export function SearchBar({ onSearch }: SearchBarProps) {
   const [query, setQuery] = useState("");
 
