@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { mockProducts } from "@/data/mock-products"
+import { getCategories } from "@/lib/database"
 
 export function useCategories() {
   const [categories, setCategories] = useState<string[]>([])
@@ -11,11 +11,8 @@ export function useCategories() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        // Simulate network delay
-        await new Promise((resolve) => setTimeout(resolve, 100))
-
-        const uniqueCategories = [...new Set(mockProducts.map((product) => product.category))]
-        setCategories(uniqueCategories.sort())
+        const result = await getCategories()
+        setCategories(result)
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load categories")
       } finally {

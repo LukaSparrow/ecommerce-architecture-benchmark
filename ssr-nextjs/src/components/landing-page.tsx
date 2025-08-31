@@ -49,22 +49,26 @@ export function LandingPage() {
   const categories = [
     {
       name: "Electronics",
-      image: "/placeholder.svg?height=200&width=200&text=Electronics",
+      image:
+        "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=200&h=200&fit=crop&crop=center",
       count: "500+ Products",
     },
     {
       name: "Fashion",
-      image: "/placeholder.svg?height=200&width=200&text=Fashion",
+      image:
+        "https://images.unsplash.com/photo-1445205170230-053b83016050?w=200&h=200&fit=crop&crop=center",
       count: "800+ Products",
     },
     {
       name: "Home & Garden",
-      image: "/placeholder.svg?height=200&width=200&text=Home",
+      image:
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=200&fit=crop&crop=center",
       count: "300+ Products",
     },
     {
       name: "Sports",
-      image: "/placeholder.svg?height=200&width=200&text=Sports",
+      image:
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop&crop=center",
       count: "200+ Products",
     },
   ];
@@ -129,7 +133,7 @@ export function LandingPage() {
             <div className="relative">
               <div className="relative z-10">
                 <Image
-                  src="/placeholder.svg?height=500&width=500&text=Hero+Product"
+                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500&h=500&fit=crop&crop=center"
                   alt="Featured Products"
                   width={500}
                   height={500}
