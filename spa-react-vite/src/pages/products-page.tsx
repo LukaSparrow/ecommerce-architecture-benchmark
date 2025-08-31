@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { ProductGrid } from "@/components/product-grid";
 import { ProductFilters } from "@/components/product-filters";
@@ -8,7 +10,6 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ShoppingCartIcon, FilterIcon } from "lucide-react";
 import { useCart } from "@/components/cart-provider";
 import { useProducts } from "@/hooks/use-products";
-import { mockProducts } from "@/data/mock-products";
 import type { FilterOptions } from "@/types/product";
 
 export function ProductsPage() {
@@ -23,11 +24,7 @@ export function ProductsPage() {
   });
 
   const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
-  const { products, loading, error } = useProducts(
-    searchQuery,
-    filters,
-    mockProducts
-  );
+  const { products, loading, error } = useProducts(searchQuery, filters);
 
   const cartItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 

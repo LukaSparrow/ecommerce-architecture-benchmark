@@ -8,16 +8,11 @@ import { ShoppingCart } from "./shopping-cart";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ShoppingCartIcon, FilterIcon } from "lucide-react";
-import { useCart } from "@/hooks/use-cart";
+import { useCart } from "@/components/cart-provider";
 import { useProducts } from "@/hooks/use-products";
-import type { FilterOptions, Product } from "@/types/product";
+import type { FilterOptions } from "@/types/product";
 
-interface ProductsPageProps {
-  initialProducts: Product[];
-}
-
-// Client Component - potrzebuje interaktywności (filtry, koszyk, wyszukiwanie)
-export function ProductsPage({ initialProducts }: ProductsPageProps) {
+export function ProductsPage() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,11 +24,7 @@ export function ProductsPage({ initialProducts }: ProductsPageProps) {
   });
 
   const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
-  const { products, loading, error } = useProducts(
-    searchQuery,
-    filters,
-    initialProducts
-  );
+  const { products, loading, error } = useProducts(searchQuery, filters);
 
   const cartItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
