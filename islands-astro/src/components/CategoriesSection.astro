@@ -1,0 +1,60 @@
+---
+const categories = [
+  {
+    name: "Electronics",
+    image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=200&h=200&fit=crop&crop=center",
+    count: "500+ Products",
+  },
+  {
+    name: "Fashion",
+    image: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=200&h=200&fit=crop&crop=center",
+    count: "800+ Products",
+  },
+  {
+    name: "Home & Garden",
+    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=200&fit=crop&crop=center",
+    count: "300+ Products",
+  },
+  {
+    name: "Sports",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop&crop=center",
+    count: "200+ Products",
+  },
+];
+---
+
+<!-- Updated background to match SPA/SSR (bg-gray-50 instead of bg-muted/50) -->
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl lg:text-4xl font-bold mb-4">
+        Shop by Category
+      </h2>
+      <p class="text-xl text-muted-foreground">
+        Explore our wide range of products across different categories
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {categories.map((category) => (
+        <!-- Updated Card styling to match SPA/SSR -->
+        <div class="group cursor-pointer hover:shadow-xl transition-all duration-300 overflow-hidden bg-card rounded-lg border">
+          <a href="/products" class="block">
+            <div class="relative aspect-square overflow-hidden">
+              <img
+                src={category.image || "/placeholder.svg"}
+                alt={category.name}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              />
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
+              <div class="absolute bottom-4 left-4 text-white">
+                <h3 class="text-xl font-bold">{category.name}</h3>
+                <p class="text-sm opacity-90">{category.count}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

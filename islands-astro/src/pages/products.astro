@@ -1,0 +1,13 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { AppIsland } from "../islands/AppIsland";
+import ProductsPageIsland from "../islands/ProductsPageIsland";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Products - ShopBench">
+  <!-- Added currentPath prop to AppIsland for products page -->
+  <AppIsland client:load currentPath="/products" />
+  <ProductsPageIsland client:load />
+  <Footer />
+</Layout>
