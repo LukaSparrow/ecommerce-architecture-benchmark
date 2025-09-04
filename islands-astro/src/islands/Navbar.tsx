@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { Button } from "../components/react/ui/button";
 import {
@@ -11,7 +9,7 @@ import { Badge } from "../components/react/ui/badge";
 import { Menu, ShoppingCart, Heart, User, Search } from "lucide-react";
 import { CartProvider, useCart } from "../components/react/CartProvider";
 
-interface AppIslandProps {
+interface NavbarProps {
   currentPath: string;
 }
 
@@ -134,7 +132,7 @@ function Navbar({ currentPath }: { currentPath: string }) {
   );
 }
 
-export function AppIsland({ currentPath }: AppIslandProps) {
+export function NavBar({ currentPath }: NavbarProps) {
   return (
     <CartProvider>
       <Navbar currentPath={currentPath} />

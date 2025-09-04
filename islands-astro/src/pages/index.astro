@@ -4,18 +4,8 @@ import HeroActions from "../components/react/HeroActions";
 import FeatureCard from "../components/react/FeatureCard";
 import CategoryCard from "../components/react/CategoryCard";
 import StatCard from "../components/react/StatCard";
-import { Button } from "../components/react/ui/button";
-import {
-  ArrowRight,
-  Star,
-  Truck,
-  Shield,
-  Headphones,
-  Zap,
-  Users,
-  Award,
-} from "lucide-react";
-import { AppIsland } from "@/islands/AppIsland";
+import { ArrowRight } from "lucide-react";
+import { NavBar } from "@/islands/Navbar";
 
 const features = [
   {
@@ -76,7 +66,7 @@ const categories = [
 ---
 
 <Layout title="ShopBench - E-commerce Benchmark">
-  <AppIsland client:load currentPath="/" />
+  <NavBar client:load currentPath="/" />
   <div class="min-h-screen">
     <!-- Hero Section -->
     <section

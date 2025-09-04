@@ -1,11 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { AppIsland } from "../islands/AppIsland";
+import { NavBar } from "../islands/Navbar";
 import ProductsPageIsland from "../islands/ProductsPageIsland";
-import Footer from "../components/Footer.astro";
 ---
 
 <Layout title="ShopBench - E-commerce Benchmark">
-  <AppIsland client:load currentPath="/products" />
+  <NavBar client:load currentPath="/products" />
   <ProductsPageIsland client:load />
 </Layout>

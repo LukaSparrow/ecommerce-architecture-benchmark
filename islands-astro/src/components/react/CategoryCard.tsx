@@ -1,6 +1,16 @@
 import { Card } from "../react/ui/card";
 
-export default function CategoryCard({ category }) {
+interface Category {
+  name: string;
+  image: string;
+  count: string;
+}
+
+interface CategoryCardProps {
+  category: Category;
+}
+
+export default function CategoryCard({ category }: CategoryCardProps) {
   return (
     <Card className="group cursor-pointer hover:shadow-xl transition-all duration-300 overflow-hidden">
       <a href="/products" className="block">
