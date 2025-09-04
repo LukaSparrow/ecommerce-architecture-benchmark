@@ -1,10 +1,304 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import LandingPage from "../components/react/LandingPage";
+import HeroActions from "../components/react/HeroActions";
+import FeatureCard from "../components/react/FeatureCard";
+import CategoryCard from "../components/react/CategoryCard";
+import StatCard from "../components/react/StatCard";
+import { Button } from "../components/react/ui/button";
+import {
+  ArrowRight,
+  Star,
+  Truck,
+  Shield,
+  Headphones,
+  Zap,
+  Users,
+  Award,
+} from "lucide-react";
 import { AppIsland } from "@/islands/AppIsland";
+
+const features = [
+  {
+    iconName: "Truck", // ZMIANA: Przekazujemy nazwę ikony jako string
+    title: "Free Shipping",
+    description: "Free delivery on orders over $50",
+  },
+  {
+    iconName: "Shield", // ZMIANA
+    title: "Secure Payment",
+    description: "100% secure payment processing",
+  },
+  {
+    iconName: "Headphones", // ZMIANA
+    title: "24/7 Support",
+    description: "Round-the-clock customer service",
+  },
+  {
+    iconName: "Zap", // ZMIANA
+    title: "Fast Delivery",
+    description: "Same-day delivery available",
+  },
+];
+
+const stats = [
+  { iconName: "Users", value: "50K+", label: "Happy Customers" }, // ZMIANA
+  { iconName: "Award", value: "99%", label: "Satisfaction Rate" }, // ZMIANA
+  { iconName: "Truck", value: "24h", label: "Fast Delivery" }, // ZMIANA
+  { iconName: "Star", value: "4.9", label: "Average Rating" }, // ZMIANA
+];
+
+const categories = [
+  {
+    name: "Electronics",
+    image:
+      "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=200&h=200&fit=crop&crop=center",
+    count: "500+ Products",
+  },
+  {
+    name: "Fashion",
+    image:
+      "https://images.unsplash.com/photo-1445205170230-053b83016050?w=200&h=200&fit=crop&crop=center",
+    count: "800+ Products",
+  },
+  {
+    name: "Home & Garden",
+    image:
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=200&fit=crop&crop=center",
+    count: "300+ Products",
+  },
+  {
+    name: "Sports",
+    image:
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop&crop=center",
+    count: "200+ Products",
+  },
+];
 ---
 
 <Layout title="ShopBench - E-commerce Benchmark">
   <AppIsland client:load currentPath="/" />
-  <LandingPage client:load />
+  <div class="min-h-screen">
+    <!-- Hero Section -->
+    <section
+      class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50"
+    >
+      <div class="container mx-auto px-4 py-20 lg:py-32">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="flex flex-col space-y-10">
+            <div class="space-y-6">
+              <span
+                class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+              >
+                🎉 New Collection Available
+              </span>
+              <h1 class="text-4xl lg:text-6xl font-bold leading-tight">
+                Discover Amazing
+                <span
+                  class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+                >
+                  Products
+                </span>
+              </h1>
+
+              <p class="text-xl text-muted-foreground max-w-lg leading-relaxed">
+                Shop the latest trends with unbeatable prices and lightning-fast
+                delivery. Your perfect shopping experience starts here.
+              </p>
+            </div>
+
+            <!-- odstęp większy przed wyspą -->
+            <div class="pt-4">
+              <HeroActions client:load />
+            </div>
+          </div>
+
+          <div class="relative">
+            <img
+              src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500&h=500&fit=crop&crop=center"
+              alt="Featured Products"
+              class="w-full h-auto rounded-2xl shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">
+            Why Choose ShopBench?
+          </h2>
+          <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            We provide the best shopping experience with premium quality and
+            exceptional service
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {
+            features.map((feature) => (
+              <FeatureCard feature={feature} client:load />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-4xl font-bold mb-4">Shop by Category</h2>
+          <p class="text-xl text-muted-foreground">
+            Explore our wide range of products across different categories
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {categories.map((c) => <CategoryCard category={c} client:load />)}
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section
+      class="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+    >
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          {stats.map((stat) => <StatCard stat={stat} client:load />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4 text-center">
+        <div class="max-w-3xl mx-auto space-y-8">
+          <h2 class="text-3xl lg:text-4xl font-bold">
+            Ready to Start Shopping?
+          </h2>
+          <p class="text-xl text-muted-foreground">
+            Join thousands of satisfied customers and discover amazing products
+            at unbeatable prices.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/products"
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8"
+            >
+              Browse Products
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+
+            <button
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-lg font-medium transition-colors border border-input bg-transparent hover:bg-accent hover:text-accent-foreground h-11 px-8"
+            >
+              Contact Us
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="space-y-4">
+            <h3
+              class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+            >
+              ShopBench
+            </h3>
+            <p class="text-gray-400">
+              Your trusted partner for online shopping with quality products and
+              exceptional service.
+            </p>
+          </div>
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold">Quick Links</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="/" class="hover:text-white transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a href="/" class="hover:text-white transition-colors"
+                  >Contact</a
+                >
+              </li>
+              <li>
+                <a href="/" class="hover:text-white transition-colors">FAQ</a>
+              </li>
+              <li>
+                <a href="/" class="hover:text-white transition-colors"
+                  >Shipping</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold">Categories</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="/products" class="hover:text-white transition-colors"
+                  >Electronics</a
+                >
+              </li>
+              <li>
+                <a href="/products" class="hover:text-white transition-colors"
+                  >Fashion</a
+                >
+              </li>
+              <li>
+                <a href="/products" class="hover:text-white transition-colors"
+                  >Home & Garden</a
+                >
+              </li>
+              <li>
+                <a href="/products" class="hover:text-white transition-colors"
+                  >Sports</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold">Support</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="/" class="hover:text-white transition-colors"
+                  >Help Center</a
+                >
+              </li>
+              <li>
+                <a href="/" class="hover:text-white transition-colors"
+                  >Returns</a
+                >
+              </li>
+              <li>
+                <a href="/" class="hover:text-white transition-colors"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a href="/" class="hover:text-white transition-colors"
+                  >Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400"
+        >
+          <p>
+            &copy; 2024 ShopBench. All rights reserved. Built for performance
+            benchmarking.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </div>
 </Layout>
