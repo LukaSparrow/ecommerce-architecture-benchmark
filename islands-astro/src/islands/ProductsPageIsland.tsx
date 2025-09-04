@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { ProductGrid } from "../components/react/ProductGrid";
 import { ProductFilters } from "../components/react/ProductFilters";
