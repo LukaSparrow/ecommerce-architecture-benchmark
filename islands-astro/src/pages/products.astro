@@ -1,10 +1,41 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { NavBar } from "../islands/Navbar";
-import ProductsPageIsland from "../islands/ProductsPageIsland";
+import ProductsApp from "../islands/ProductsApp.tsx";
 ---
 
-<Layout title="ShopBench - E-commerce Benchmark">
+<Layout title="ShopBench - Our Products">
   <NavBar client:load currentPath="/products" />
-  <ProductsPageIsland client:load />
+
+  <div class="min-h-screen bg-background">
+    <header class="bg-gradient-to-r from-blue-50 to-purple-50 border-b">
+      <div class="container mx-auto px-4 py-8">
+        <div
+          class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+        >
+          <div>
+            <h1 class="text-3xl font-bold mb-2">Our Products</h1>
+            <p class="text-muted-foreground">
+              Discover amazing products at great prices
+            </p>
+          </div>
+          <div id="header-actions" class="flex items-center gap-4"></div>
+        </div>
+        <div id="mobile-search" class="mt-4 md:hidden"></div>
+      </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-6">
+      <div class="flex gap-6">
+        <aside class="hidden md:block w-64 shrink-0">
+          <div class="sticky top-24">
+            <div id="desktop-filters"></div>
+          </div>
+        </aside>
+        <main class="flex-1">
+          <ProductsApp client:load />
+        </main>
+      </div>
+    </div>
+  </div>
 </Layout>

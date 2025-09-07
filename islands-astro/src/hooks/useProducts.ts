@@ -22,7 +22,7 @@ export function useProducts(searchQuery: string, filters: FilterOptions) {
           filters.priceRange[1],
           filters.inStock,
           filters.sortBy,
-          100, // Load more products for client-side pagination
+          1000,
           0,
         )
 
