@@ -49,11 +49,16 @@ app.get('/api/products', async (req, res) => {
       total: totalProducts,
     });
 
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error fetching products' });
-  }
+  } catch (error: any) {
+  console.error('❌ Prisma query failed:', error);
+  res.status(500).json({
+    message: 'Error fetching products',
+    error: error.message,
+    code: error.code,
+    meta: error.meta,
+  });
+}
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`🚀 Server with PGlite+Prisma running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server with SQLite+Prisma running on http://localhost:${PORT}`));
