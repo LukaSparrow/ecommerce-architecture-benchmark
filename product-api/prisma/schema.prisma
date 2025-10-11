@@ -1,0 +1,27 @@
+// prisma/schema.prisma
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id            Int      @id @default(autoincrement())
+  name          String
+  description   String   @db.Text
+  price         Decimal  @db.Decimal(10, 2)
+  originalPrice Decimal? @map("original_price") @db.Decimal(10, 2)
+  image         String?
+  category      String
+  rating        Decimal  @default(0) @db.Decimal(3, 2)
+  reviewCount   Int      @default(0) @map("review_count")
+  inStock       Boolean  @default(true) @map("in_stock")
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+
+  @@map("products")
+}
