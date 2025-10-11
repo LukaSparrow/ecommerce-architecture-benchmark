@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { searchProducts } from "@/lib/database"
 import type { Product, FilterOptions } from "@/types/product"

@@ -1,8 +1,6 @@
-"use client"
-
 import { useState, useEffect } from "react"
-import { searchProducts } from "../lib/database"
 import type { Product, FilterOptions } from "../types/product"
+import { searchProducts } from "../lib/database"
 
 export function useProducts(searchQuery: string, filters: FilterOptions) {
   const [products, setProducts] = useState<Product[]>([])
@@ -28,7 +26,8 @@ export function useProducts(searchQuery: string, filters: FilterOptions) {
 
         setProducts(result.products)
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load products")
+        setError(err instanceof Error ? err.message : "An error occurred")
+        setProducts([])
       } finally {
         setLoading(false)
       }
