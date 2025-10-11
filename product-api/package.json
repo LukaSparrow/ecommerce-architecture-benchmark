@@ -4,8 +4,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "node --loader ts-node/esm src/index.ts",
-    "db:setup": "node --loader ts-node/esm prisma/seed.ts"
+    "dev": "tsx src/index.ts",
+    "db:setup": "tsx prisma/seed.ts"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
@@ -24,6 +24,7 @@
     "@types/node": "^24.7.1",
     "prisma": "^6.17.1",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   }
 }
