@@ -133,6 +133,8 @@ export function LandingPage() {
                 <img
                   src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=500&h=500&fit=crop&crop=center"
                   alt="Featured Products"
+                  width="500"
+                  height="500"
                   className="w-full h-auto rounded-2xl shadow-2xl"
                 />
               </div>
@@ -197,6 +199,8 @@ export function LandingPage() {
                     <img
                       src={category.image || "/placeholder.svg"}
                       alt={category.name}
+                      width="500"
+                      height="500"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
