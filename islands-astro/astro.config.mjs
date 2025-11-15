@@ -7,14 +7,16 @@ export default defineConfig({
   integrations: [
     react(),
     tailwind({
-      // To jest teraz PRAWIDŁOWE, ponieważ używamy własnego postcss.config.cjs
       applyBaseStyles: false,
     }),
   ],
   output: 'static',
+
   vite: {
-    optimizeDeps: {
-      exclude: ["@electric-sql/pglite"],
+    resolve: {
+      alias: {
+        'react-dom/client': 'react-dom/profiling', //only for profiling builds
+      },
     },
   },
 });

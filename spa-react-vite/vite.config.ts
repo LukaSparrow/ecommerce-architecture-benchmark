@@ -8,9 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      'react-dom/client': 'react-dom/profiling', // only for profiling builds
     },
-  },
-  optimizeDeps: {
-    exclude: ["@electric-sql/pglite"],
   },
 })
