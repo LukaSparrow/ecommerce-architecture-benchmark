@@ -11,7 +11,7 @@ export default defineConfig({
     }),
   ],
   output: 'static',
-
+  /*
   vite: {
     resolve: {
       alias: {
@@ -19,4 +19,5 @@ export default defineConfig({
       },
     },
   },
+  */
 });
