@@ -61,4 +61,4 @@ app.get('/api/products', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`🚀 Server with SQLite+Prisma running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server with SQLite+Prisma running on http://localhost:${PORT}`));
