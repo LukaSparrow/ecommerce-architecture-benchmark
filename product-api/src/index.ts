@@ -50,7 +50,7 @@ app.get('/api/products', async (req, res) => {
     });
 
   } catch (error: any) {
-  console.error('❌ Prisma query failed:', error);
+  console.error('Prisma query failed:', error);
   res.status(500).json({
     message: 'Error fetching products',
     error: error.message,
