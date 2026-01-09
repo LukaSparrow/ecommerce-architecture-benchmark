@@ -67,7 +67,7 @@ const categories = [
 ---
 
 <Layout>
-  <NavBar client:load currentPath="/" />
+  <NavBar client:visible currentPath="/" />
   <div class="min-h-screen">
     <!-- Hero Section -->
     <section
@@ -163,7 +163,7 @@ const categories = [
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {
             features.map((feature) => (
-              <FeatureCard feature={feature} client:load />
+              <FeatureCard feature={feature} client:visible />
             ))
           }
         </div>
@@ -181,7 +181,7 @@ const categories = [
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {categories.map((c) => <CategoryCard category={c} client:load />)}
+          {categories.map((c) => <CategoryCard category={c} client:visible />)}
         </div>
       </div>
     </section>
@@ -192,7 +192,7 @@ const categories = [
     >
       <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-          {stats.map((stat) => <StatCard stat={stat} client:load />)}
+          {stats.map((stat) => <StatCard stat={stat} client:visible />)}
         </div>
       </div>
     </section>

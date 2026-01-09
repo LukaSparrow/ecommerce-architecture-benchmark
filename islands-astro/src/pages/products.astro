@@ -5,7 +5,7 @@ import ProductsApp from "../islands/ProductsApp.tsx";
 ---
 
 <Layout>
-  <NavBar client:load currentPath="/products" />
+  <NavBar client:visible currentPath="/products" />
   <div class="min-h-screen bg-background">
     <header class="bg-gradient-to-r from-blue-50 to-purple-50 border-b">
       <div class="container mx-auto px-4 py-8">
@@ -32,7 +32,7 @@ import ProductsApp from "../islands/ProductsApp.tsx";
           </div>
         </aside>
         <main class="flex-1">
-          <ProductsApp client:load />
+          <ProductsApp client:visible />
         </main>
       </div>
     </div>
